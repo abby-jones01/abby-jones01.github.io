@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Animation Playground</title>
+    <style>
+      /* Add your global styles here */
+      #element1 {
+        background-color: white;
+        border-radius: 50px;
+        transition: transform (1s);
+      }
+
+      #element1:hover{
+        transform: scale(0.8,0.8);
+        background-color: lightgray;
+      }
+
+      @keyframes float {
+        from {transform: translatex(-200px);}
+        to {transform: translatex(0)}
+        
+      }
+
+      #element2 {
+        background-color: bisque;
+        animation-name: float;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      #element3 {
+        background-color: darkslategray;
+        transition: transform 2s;
+        transition-duration: 2.5s;
+        transition-timing-function: ease-out;
+      }
+
+      #element3:active{
+        
+        transform: rotateZ(360deg);
+      }
+
+      .animated-element {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        margin: 20px;
+        display: inline-flex; /* Use flex to center text vertically */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        text-align: center; /* Center text horizontally */
+
+        /* You can add animation/transition code to all elements here */
+      }
+
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Animation Playground</h1>
+    <div class="animated-element" id="element1">Hover</Menu></div>
+
+    <div class="animated-element" id="element2">Watch Me Float</div>
+
+    <div class="animated-element" id="element3">Click & Hold</div>
+
+    <!-- You can add more elements here -->
+
+    <script>
+      // JavaScript for adding interactivity (if needed)
+
+      // For example: if you want to add a class when an element gets clicked, use code similar to:
+      // const elementX = document.getElementById("elementX");
+      // elementX.addEventListener("click", () => {
+      // elementX.classList.toggle("clicked"); // Adds "clicked" class if it's not there, otherwise it removes it
+      // });
+    </script>
+  </body>
+</html>
