@@ -1,0 +1,106 @@
+<html>
+    <head>
+              <title>CSS Loading Animation</title>
+      <style>
+          
+        
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #F4EABD;
+        }
+          .container{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height:800px;
+            perspective: 800px;
+          z-index: 9;
+        }
+
+        .wavy{
+          position:relative;
+          width:150px;
+          height:50px;
+          overflow:hidden;
+        margin:-80px;
+        }
+
+        .wavy::before{
+            content:'aaaaaaaaaa';
+            position:absolute;
+            top:-70px;
+            left: -20px;
+            font-size:5em;
+            color:transparent;
+            text-decoration-style: wavy;
+            text-decoration-color: black;
+            text-decoration-line: underline;
+            animation: animate 3s linear infinite;
+        }
+
+        .wavy2{
+          position:relative;
+          width:150px;
+          height:50px;
+          overflow:hidden;
+        margin:-80px;
+        }
+
+        .wavy2::before{
+            content:'aaaaaaaa';
+            position:absolute;
+            top:-50px;
+            left: -20px;
+            font-size:5em;
+            color:transparent;
+            text-decoration-style: wavy;
+            text-decoration-color: black;
+            text-decoration-line: underline;
+            animation: animate 3s linear infinite;
+        }
+
+        .wave{
+            padding:300px 0 0 5px;;
+        }
+        @keyframes animate{
+
+            0%{
+                transform: translateX(-1px);
+
+            }
+            100%{
+                transform: translateX(-72px);
+
+            }
+        }
+
+        .water{
+            width:100px;
+            height:100px;
+            border-radius: 50%;
+            z-index: 8;
+        }
+
+</style>
+<body>
+    <div class="container">
+        <img src="washing machine.svg">
+    </div>
+
+    <div class="wave">
+        <div class="wavy"></div>
+        <div class="wavy2"></div>
+
+    </div>
+
+    <div class="water"></div>
+
+  
+
+</body>
+</head>
+
+</html>
