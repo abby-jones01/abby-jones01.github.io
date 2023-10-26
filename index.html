@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+      .title{
+        margin:auto;
+        width:50%;
+        padding:5%;
+      }
+
+      .body {
+        overflow-x:hidden;
+        margin:0;
+      }
+
+
+.row, .section, section {
+    position: relative;
+    overflow: hidden;
+}
+.section, section {
+    padding: 80px 0;
+    text-align:center;
+}
+.container-fluid {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.horiz-gallery-strip, .horiz-gallery-wrapper {
+   display: flex;
+   flex-wrap: nowrap;
+   will-change: transform;
+  position:relative;
+}
+
+.project-wrap {
+    width: 50vw;
+    padding: 2rem;
+    box-sizing: content-box;
+}
+.project-wrap img {
+    width:100%;
+    height:auto;
+}
+
+
+#menu{
+  width:30%;
+  height:30%;
+  position:absolute;
+  margin-top: 20%;
+  z-index: 9;
+  
+}
+
+.restaurant{
+  width: 100%;
+  height:100%;
+  z-index: auto;
+  position:relative;
+  z-index:auto;
+  opacity:50%;
+
+}
+
+    </style>
+  </head>
+
+  <?xml version="1.0" encoding="UTF-8"?>
+<div class="title">
+  <img src="title.svg">
+</div>
+
+<div id="smooth-wrapper">
+  <div id="smooth-content">
+
+
+         <div class="horiz-gallery-wrapper">
+          <div class="horiz-gallery-strip">
+
+            <div class="project-wrap">
+             <img src="ivanhoes.svg">
+            </div>
+            <div class="project-wrap">
+              <img src="the-bridge.svg">
+             </div>
+            <div class="project-wrap">
+             <img src="greeks.svg">
+            </div>
+         
+          </div>
+    </div>
+        
+  </div>
+    </section>
+    
+  </div>
+</div>
+
+<div>
+  <img id="menu" src="menu.svg">
+  <img class="restaurant" src="ivanhoes.svg">
+</div>
+<div>
+  <img id="menu" src="menu.svg">
+  <img class="restaurant" src="the-bridge.svg">
+</div>
+<div>
+  <img id="menu" src="menu.svg">
+  <img class="restaurant" src="greeks.svg">
+</div>
+  <body>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+      <script src="./scripts/ScrollTrigger.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+   
+
+      <script>
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+//Horizontal Scroll Galleries
+if (document.getElementById("portfolio")) {
+    const horizontalSections = gsap.utils.toArray('.horiz-gallery-wrapper')
+
+    horizontalSections.forEach(function (sec, i) {
+
+      const pinWrap = sec.querySelector(".horiz-gallery-strip");
+
+      let pinWrapWidth;
+      let horizontalScrollLength;
+      
+      function refresh() {
+        pinWrapWidth = pinWrap.scrollWidth;
+        horizontalScrollLength = pinWrapWidth - window.innerWidth;
+      }
+
+      // window.addEventListener("load", function () {
+        refresh();
+        // Pinning and horizontal scrolling
+        let scrollTween = gsap.to(pinWrap, {
+          scrollTrigger: {
+            scrub: true,
+            trigger: sec,
+            pin: sec,
+            start: "center center",
+            end: () => `+=${pinWrapWidth}`,
+            invalidateOnRefresh: true
+          },
+          x: () => -horizontalScrollLength,
+          ease: "none"
+        });
+      
+      pinWrap.querySelectorAll("[data-speed-x]").forEach((el, i) => {
+        let speed = parseFloat(el.getAttribute("data-speed-x"));
+        gsap.to(el, {
+          x: () => (1 - speed) * (window.innerWidth + el.offsetWidth),
+          ease: "none",
+          scrollTrigger: {
+            containerAnimation: scrollTween,
+            trigger: el,
+            onRefresh: self => {
+              let start = Math.max(0, self.start);
+              self.setPositions(start, start + (self.end - self.start) / Math.abs(speed)); // adjust for how long it'll stay in view
+              self.animation.progress(0);
+            },
+            scrub: true
+          }
+        });
+      });
+      
+
+        ScrollTrigger.addEventListener("refreshInit", refresh);
+      // });
+    });
+}
+      </script>
+      
+    </body>
+</html>
